@@ -106,6 +106,17 @@ function LinkedList(val) {
 		return insertAt(value, index, ct + 1, node.next);
 	};
 
+	const removeAt = (index, count, node = head) => {
+		if (node.next === null) return "Too far...";
+
+		const ct = node === head ? 0 : count;
+		if (index === ct + 1) {
+			const next = node.next.next;
+			node.next.next = null;
+			node.next = next;
+		}
+	};
+
 	return {
 		append,
 		print,
@@ -119,6 +130,7 @@ function LinkedList(val) {
 		find,
 		toStr,
 		insertAt,
+		removeAt,
 	};
 }
 
@@ -127,5 +139,5 @@ a.prepend(50);
 a.prepend(50);
 
 console.log(a.toStr());
-a.insertAt(5, 2);
+a.removeAt(1);
 console.log(a.toStr());
