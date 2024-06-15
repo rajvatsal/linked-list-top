@@ -1,11 +1,7 @@
 #!/bin/env node
+import Node from "./Node.mjs";
 
-function LinkedList(val) {
-	const Node = (value = null, next = null) => {
-		const node = { value, next };
-		return node;
-	};
-
+export default function LinkedList(val) {
 	let head = Node(val);
 	let tail = head;
 
@@ -133,11 +129,3 @@ function LinkedList(val) {
 		removeAt,
 	};
 }
-
-const a = LinkedList(10);
-a.prepend(50);
-a.prepend(50);
-
-console.log(a.toStr());
-a.removeAt(1);
-console.log(a.toStr());
