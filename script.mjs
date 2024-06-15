@@ -85,7 +85,7 @@ function LinkedList(val) {
 				? `( ${node.value} )`
 				: `${pathString} ~> ( ${node.value} )`;
 		if (node.next === null) {
-			return ps;
+			return `${ps} ~> null`;
 		}
 
 		return toStr(ps, node.next);
