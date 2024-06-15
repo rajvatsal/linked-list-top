@@ -22,7 +22,7 @@ function LinkedList(val) {
 	const append = (value, node = head) => {
 		if (node === undefined) return;
 		if (node.next === null) {
-			node.next = Node(value, null, node);
+			node.next = Node(value, node);
 			tail = node.next;
 			return;
 		}
@@ -91,6 +91,21 @@ function LinkedList(val) {
 		return toStr(ps, node.next);
 	};
 
+	const insertAt = (value, index, count, node = head) => {
+		const ct = node === head ? 0 : count;
+
+		if (node.next === null) return "Too far...";
+
+		if (index === ct + 1) {
+			const next = node.next;
+			const newNode = Node(value, next);
+			node.next = newNode;
+			return;
+		}
+
+		return insertAt(value, index, ct + 1, node.next);
+	};
+
 	return {
 		append,
 		print,
@@ -103,6 +118,7 @@ function LinkedList(val) {
 		contains,
 		find,
 		toStr,
+		insertAt,
 	};
 }
 
@@ -110,4 +126,6 @@ const a = LinkedList(10);
 a.prepend(50);
 a.prepend(50);
 
+console.log(a.toStr());
+a.insertAt(5, 2);
 console.log(a.toStr());
